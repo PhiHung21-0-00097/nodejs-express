@@ -1,0 +1,31 @@
+{
+  "name": "backend-fake-json",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon --inspect index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PhiHung21-0-00097/nodejs-express.git"
+  },
+  "keywords": [
+    "nodejs",
+    "express",
+    "otis"
+  ],
+  "author": "otisnguyen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/PhiHung21-0-00097/nodejs-express/issues"
+  },
+  "homepage": "https://github.com/PhiHung21-0-00097/nodejs-express#readme",
+  "dependencies": {
+    "express": "^4.19.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.4"
+  }
+}
