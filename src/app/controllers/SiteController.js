@@ -1,10 +1,23 @@
 const Course = require("../models/Course");
 class SiteController {
-  index(req, res, next) {
-    Course.find({})
-      .then((course) => res.render("index", { title: "TEST TITLE" }))
-      .catch(next);
+  async index(req, res) {
+    try {
+      // const course = new Course({
+      //   name: "Phong",
+      //   desc: "sdfsdf",
+      // });
+      // await course.save();
+      // console.log("course: ", course);
+      const courses = await Course.find({});
+      console.log(courses);
+      res.json(courses);
+    } catch (err) {
+      console.log(err);
+      res.status(400).json({ error: "ERROR!!!" });
+    }
+    // res.render('home');
   }
+  //[GET] /news/:slug(slug=biến động)
   search(req, res) {
     res.render("search");
   }
