@@ -2,16 +2,20 @@ const path = require("path");
 const express = require("express");
 const morgan = require("morgan");
 const handlebars = require("express-handlebars");
-
 const route = require("./routes");
-const db = require("./config/db");
+const db = require("./config/config");
+const cors = require("cors");
+const logging = require("./config/logging");
+const dotenv = require("dotenv");
 
 // Connect to db
 db.connect();
 
 //
 const app = express();
-const port = 5000;
+const PORT = process.env.PORT || 5000;
+
+// app.use(cors(corsOption));
 
 app.use(express.static(path.join(__dirname, "public")));
 
@@ -22,6 +26,7 @@ app.use(
 );
 // Gửi dữ liệu dạng form html thì có urlencoded xử lí
 app.use(express.json());
+
 // Http logger
 app.use(morgan("combined"));
 
@@ -34,11 +39,15 @@ app.engine(
   })
 );
 app.set("view engine", "hbs");
-app.set("views", path.join(__dirname, "resources/views"));
+app.set("views", path.join(__dirname, "resources", "views"));
 
+// app.get("/",  (req, res) => {
+//   const courses = await Course.find({});
+//   res.render("index", { courses });
+// });
 // Route init
 route(app);
 
-app.listen(port, () => {
-  console.log(`Đã khởi động: http://localhost:${port}`);
+app.listen(PORT, () => {
+  logging.info(`Đã khởi động: ${PORT}`);
 });
